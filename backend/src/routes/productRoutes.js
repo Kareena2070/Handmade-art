@@ -12,7 +12,7 @@ const upload = require("../middleware/uploadMiddleware");
 
 const router = express.Router();
 // public routes
-router.get("/:id", protect, getProductById);
+router.get("/:id", getProductById);
 router.get("/", getProducts);
 
 // protected routes

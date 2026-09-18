@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { getWhatsAppUrl } from "../lib/whatsapp";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const WHATSAPP_URL = getWhatsAppUrl();
 
   const closeMenu = () => {
     setIsOpen(false);
@@ -25,29 +27,20 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-6 text-sm md:flex">
-            <Link
-              href="/"
-              className="hover:text-gray-600"
-            >
+            <Link href="/" className="hover:text-gray-600">
               Home
             </Link>
 
-            <Link
-              href="/products"
-              className="hover:text-gray-600"
-            >
+            <Link href="/products" className="hover:text-gray-600">
               Products
             </Link>
 
-            <Link
-              href="/about"
-              className="hover:text-gray-600"
-            >
+            <Link href="/about" className="hover:text-gray-600">
               Our Story
             </Link>
 
             <a
-              href="https://wa.me/YOUR_PHONE_NUMBER"
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full bg-black px-4 py-2 text-white transition hover:bg-gray-800"
@@ -76,32 +69,20 @@ export default function Navbar() {
         {isOpen && (
           <div className="border-t border-gray-100 py-4 md:hidden">
             <div className="flex flex-col gap-4 text-sm">
-              <Link
-                href="/"
-                onClick={closeMenu}
-                className="py-1"
-              >
+              <Link href="/" onClick={closeMenu} className="py-1">
                 Home
               </Link>
 
-              <Link
-                href="/products"
-                onClick={closeMenu}
-                className="py-1"
-              >
+              <Link href="/products" onClick={closeMenu} className="py-1">
                 Products
               </Link>
 
-              <Link
-                href="/about"
-                onClick={closeMenu}
-                className="py-1"
-              >
+              <Link href="/about" onClick={closeMenu} className="py-1">
                 Our Story
               </Link>
 
               <a
-                href="https://wa.me/YOUR_PHONE_NUMBER"
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMenu}

@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { getWhatsAppUrl } from "../lib/whatsapp";
 
 export default function Footer() {
+  const whatsappUrl = getWhatsAppUrl();
+
   return (
     <footer className="border-t border-gray-200 bg-white">
       <div className="mx-auto max-w-7xl px-6 py-12">
@@ -58,7 +61,7 @@ export default function Footer() {
 
             <div className="mt-4 flex flex-col gap-3 text-sm text-gray-600">
               <a
-                href="https://wa.me/YOUR_PHONE_NUMBER"
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-gray-900"

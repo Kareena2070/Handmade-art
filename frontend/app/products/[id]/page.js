@@ -4,6 +4,7 @@ import { useEffect, useState, use } from "react";
 import Link from "next/link";
 
 import { getProductById } from "../../lib/api";
+import { getWhatsAppUrl } from "../../lib/whatsapp";
 
 export default function ProductDetailsPage({ params }) {
   const [product, setProduct] = useState(null);
@@ -51,6 +52,10 @@ export default function ProductDetailsPage({ params }) {
     );
   }
 
+  const whatsappUrl = getWhatsAppUrl(
+    `Hi! I'm interested in ${product.name}. Could you please share more details?`,
+  );
+
   return (
     <main className="min-h-screen bg-[#faf7f2]">
       <section className="mx-auto max-w-7xl px-6 py-12 md:py-20">
@@ -90,7 +95,7 @@ export default function ProductDetailsPage({ params }) {
             </div>
 
             <a
-              href="https://wa.me/YOUR_PHONE_NUMBER"
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-10 inline-flex w-fit rounded-full bg-black px-7 py-3 text-sm font-medium text-white transition hover:bg-gray-800"

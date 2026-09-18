@@ -1,4 +1,8 @@
+import { getWhatsAppUrl } from "../lib/whatsapp";
+
 export default function ContactCTA() {
+  const whatsappUrl = getWhatsAppUrl();
+
   return (
     <section className="bg-[#eee6db]">
       <div className="mx-auto max-w-4xl px-6 py-20 text-center md:py-24">
@@ -16,7 +20,7 @@ export default function ContactCTA() {
         </p>
 
         <a
-          href="https://wa.me/YOUR_PHONE_NUMBER"
+          href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-8 inline-flex rounded-full bg-black px-7 py-3 text-sm font-medium text-white transition hover:bg-gray-800"
