@@ -25,6 +25,11 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
 
+    imagePublicId: {
+      type: String,
+      required: true,
+    },
+
     category: {
       type: String,
       required: true,
@@ -38,7 +43,7 @@ const productSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const Product = mongoose.model("Product", productSchema);
