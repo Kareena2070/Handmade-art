@@ -1,8 +1,15 @@
 const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
+
+// Render containers start without the Git-ignored uploads directory. Create
+// the temporary directory before Multer attempts to write an uploaded file.
+const uploadDirectory = path.join(process.cwd(), "uploads");
+fs.mkdirSync(uploadDirectory, { recursive: true });
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, uploadDirectory);
   },
 
   filename: (req, file, cb) => {

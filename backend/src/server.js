@@ -25,6 +25,26 @@ app.use("/api/auth", authRoutes);
 app.use("/api/ai", aiRoutes);
 app.use("/api/upload", uploadRoutes);
 
+// Always return JSON to the frontend, including errors thrown by Multer before
+// a route controller can handle them.
+app.use((error, req, res, next) => {
+  if (error) {
+    console.error("Request error:", error);
+
+    const message =
+      error.code === "LIMIT_FILE_SIZE"
+        ? "Image must be 5 MB or smaller"
+        : error.message || "Unable to process the request";
+
+    return res.status(400).json({
+      success: false,
+      message,
+    });
+  }
+
+  next();
+});
+
 app.get("/", (req, res) => {
   res.json({
     success: true,

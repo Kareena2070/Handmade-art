@@ -1,5 +1,17 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+const getResponseData = async (response) => {
+  const contentType = response.headers.get("content-type") || "";
+
+  if (contentType.includes("application/json")) {
+    return response.json();
+  }
+
+  return {
+    message: `The server returned ${response.status}. Please try again.`,
+  };
+};
+
 export const getProducts = async () => {
   const response = await fetch(`${API_URL}/products`);
 
@@ -32,7 +44,7 @@ export const loginAdmin = async (email, password) => {
     }),
   });
 
-  const data = await response.json();
+  const data = await getResponseData(response);
 
   if (!response.ok) {
     throw new Error(data.message || "Login failed");
@@ -86,7 +98,7 @@ export const createProduct = async ({
     body: formData,
   });
 
-  const data = await response.json();
+  const data = await getResponseData(response);
 
   if (!response.ok) {
     throw new Error(data.message || "Failed to create product");
@@ -175,7 +187,7 @@ export const updateProduct = async ({
     body: formData,
   });
 
-  const data = await response.json();
+  const data = await getResponseData(response);
 
   if (!response.ok) {
     throw new Error(data.message || "Failed to update product");
