@@ -3,6 +3,12 @@ import { getWhatsAppUrl } from "../lib/whatsapp";
 
 export default function Footer() {
   const whatsappUrl = getWhatsAppUrl();
+  const contactEmail =
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() ||
+    "kareenayadav1088@gmail.com";
+  const emailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    contactEmail
+  )}&su=${encodeURIComponent("Handmade Art enquiry")}`;
 
   return (
     <footer className="border-t border-gray-200 bg-white">
@@ -70,7 +76,9 @@ export default function Footer() {
               </a>
 
               <a
-                href="mailto:YOUR_EMAIL@example.com"
+                href={emailUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-gray-900"
               >
                 Email us

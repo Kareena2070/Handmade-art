@@ -1,4 +1,5 @@
 import Link from "next/link";
+import homeImage from "../../public/main-image.jpeg";
 
 export default function Hero() {
   return (
@@ -14,8 +15,8 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-lg text-lg leading-8 text-gray-600">
-            Discover thoughtfully handmade pieces inspired by Indian
-            folk art, created with care and a personal touch.
+            Discover thoughtfully handmade pieces inspired by Indian folk art,
+            created with care and a personal touch.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -35,16 +36,12 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="flex min-h-[380px] items-center justify-center rounded-3xl bg-[#eee6db]">
-          <div className="text-center">
-            <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
-              Your artwork
-            </p>
-
-            <p className="mt-3 text-2xl font-medium text-gray-700">
-              Image coming here
-            </p>
-          </div>
+        <div className="flex h-[400px] w-full items-center justify-center overflow-hidden rounded-3xl md:h-[500px]">
+          <img
+            src={homeImage.src}
+            alt="Handmade Art"
+            className="h-full w-full object-cover"
+          />
         </div>
       </div>
     </section>
